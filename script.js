@@ -5,8 +5,8 @@ async function loadJSON(file){const r=await fetch(file); if(!r.ok) throw new Err
 async function loadDaily(){
   try{
     const [mantras, knowledge, quizzes, festivals, articles] = await Promise.all([
-      loadJSON('data/mantras.json'), loadJSON('data/dharma-gyan.json'),
-      loadJSON('data/quiz.json'), loadJSON('data/festivals.json'), loadJSON('data/articles.json')
+      loadJSON('mantras.json'), loadJSON('dharma-gyan.json'),
+      loadJSON('quiz.json'), loadJSON('festivals.json'), loadJSON('articles.json')
     ]);
     const m=mantras[dayIndex%mantras.length], k=knowledge[dayIndex%knowledge.length], q=quizzes[dayIndex%quizzes.length];
     document.querySelector('#mantraText').textContent=m.mantra;
