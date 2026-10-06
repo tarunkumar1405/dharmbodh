@@ -1,6 +1,67 @@
 [
-  {"date":"2026-10-20","name":"करवा चौथ","url":"articles/karwa-chauth.html"},
-  {"date":"2026-10-29","name":"धनतेरस","url":"articles/dhanteras.html"},
-  {"date":"2026-10-31","name":"दीपावली","url":"articles/diwali.html"},
-  {"date":"2026-11-02","name":"भाई दूज","url":"articles/bhai-dooj.html"}
+  {
+    "date": "2026-10-20",
+    "name": "दशहरा (विजयादशमी)",
+    "url": "dussehra.html"
+  },
+  {
+    "date": "2026-10-25",
+    "name": "शरद पूर्णिमा",
+    "url": "sharad-purnima.html"
+  },
+  {
+    "date": "2026-10-29",
+    "name": "करवा चौथ",
+    "url": "karwa-chauth.html"
+  },
+  {
+    "date": "2026-11-01",
+    "name": "अहोई अष्टमी",
+    "url": "ahoi-ashtami.html"
+  },
+  {
+    "date": "2026-11-06",
+    "name": "धनतेरस",
+    "url": "dhanteras.html"
+  },
+  {
+    "date": "2026-11-08",
+    "name": "नरक चतुर्दशी",
+    "url": "narak-chaturdashi.html"
+  },
+  {
+    "date": "2026-11-08",
+    "name": "दीपावली (लक्ष्मी पूजा)",
+    "url": "diwali.html"
+  },
+  {
+    "date": "2026-11-09",
+    "name": "गोवर्धन पूजा",
+    "url": "govardhan-puja.html"
+  },
+  {
+    "date": "2026-11-11",
+    "name": "भाई दूज",
+    "url": "bhai-dooj.html"
+  },
+  {
+    "date": "2026-11-15",
+    "name": "छठ पूजा",
+    "url": "chhath-puja.html"
+  },
+  {
+    "date": "2026-11-20",
+    "name": "देवउठनी एकादशी",
+    "url": "devutthan-ekadashi.html"
+  },
+  {
+    "date": "2026-11-21",
+    "name": "तुलसी विवाह",
+    "url": "tulsi-vivah.html"
+  },
+  {
+    "date": "2026-11-24",
+    "name": "कार्तिक पूर्णिमा",
+    "url": "kartik-purnima.html"
+  }
 ]
