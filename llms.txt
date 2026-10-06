@@ -1,0 +1,32 @@
+# DharmBodh
+
+DharmBodh is a Hindi website focused on Sanatan Dharma, Hindu religious knowledge, devotional traditions, mantras, puja methods, vrat and festivals, temples, stories and quizzes.
+
+## Main sections
+- https://dharmbodh.co.in/dharma-gyan.html — धर्म ज्ञान
+- https://dharmbodh.co.in/devi-devta.html — देवी-देवता
+- https://dharmbodh.co.in/dharmik-katha.html — धार्मिक कथाएँ
+- https://dharmbodh.co.in/puja-vidhi.html — पूजा-विधि
+- https://dharmbodh.co.in/vrat-tyohar.html — व्रत-त्योहार
+- https://dharmbodh.co.in/mandir.html — मंदिर
+- https://dharmbodh.co.in/mantra.html — मंत्र
+- https://dharmbodh.co.in/quiz.html — धार्मिक प्रश्नोत्तरी
+
+## Featured topics
+- https://dharmbodh.co.in/bhagwan-shiv.html
+- https://dharmbodh.co.in/bhagwan-ram.html
+- https://dharmbodh.co.in/bhagwan-krishna.html
+- https://dharmbodh.co.in/hanuman-ji.html
+- https://dharmbodh.co.in/ganesh-ji.html
+- https://dharmbodh.co.in/vishnu-bhagwan.html
+- https://dharmbodh.co.in/brahma-bhagwan.html
+- https://dharmbodh.co.in/mahamrityunjaya-mantra.html
+- https://dharmbodh.co.in/gayatri-mantra.html
+- https://dharmbodh.co.in/ekadashi-vrat.html
+- https://dharmbodh.co.in/puja-me-deepak-ka-mahatva.html
+
+## About
+https://dharmbodh.co.in/about.html
+https://dharmbodh.co.in/contact.html
+https://dharmbodh.co.in/privacy.html
+https://dharmbodh.co.in/disclaimer.html
