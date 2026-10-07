@@ -1,20 +1,6 @@
 /* =========================================
    DHARMBODH - MAIN SCRIPT
-   Dynamic Homepage Content
-   ========================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-  loadFestival();
-  loadKnowledge();
-  loadMantra();
-  loadQuiz();
-  loadArticles();
-  setupMobileMenu();
-});
-
-
-/* =========================================
-   INDIA DATE
+   Dynamic homepage content
    ========================================= */
 
 function getIndiaToday() {
@@ -26,60 +12,26 @@ function getIndiaToday() {
   }).format(new Date());
 }
 
-
-/* =========================================
-   LOAD JSON
-   ========================================= */
-
 async function loadJSON(file) {
-  const response = await fetch(file + "?v=" + Date.now());
+  const response = await fetch(file, { cache: "no-store" });
 
   if (!response.ok) {
-    throw new Error(file + " could not be loaded");
+    throw new Error(file + " could not be loaded: " + response.status);
   }
 
-  return await response.json();
+  return response.json();
 }
-
-
-/* =========================================
-   ARRAY HELPER
-   ========================================= */
 
 function asArray(data) {
   if (Array.isArray(data)) return data;
-
-  if (data && Array.isArray(data.items)) {
-    return data.items;
-  }
-
-  if (data && Array.isArray(data.data)) {
-    return data.data;
-  }
-
-  if (data && Array.isArray(data.festivals)) {
-    return data.festivals;
-  }
-
-  if (data && Array.isArray(data.mantras)) {
-    return data.mantras;
-  }
-
-  if (data && Array.isArray(data.questions)) {
-    return data.questions;
-  }
-
-  if (data && Array.isArray(data.articles)) {
-    return data.articles;
-  }
-
+  if (data && Array.isArray(data.items)) return data.items;
+  if (data && Array.isArray(data.data)) return data.data;
+  if (data && Array.isArray(data.festivals)) return data.festivals;
+  if (data && Array.isArray(data.questions)) return data.questions;
+  if (data && Array.isArray(data.mantras)) return data.mantras;
+  if (data && Array.isArray(data.articles)) return data.articles;
   return [];
 }
-
-
-/* =========================================
-   VALUE HELPER
-   ========================================= */
 
 function getValue(item, keys) {
   for (const key of keys) {
@@ -92,20 +44,22 @@ function getValue(item, keys) {
       return item[key];
     }
   }
-
   return "";
 }
 
+function dayIndex(items) {
+  if (!items.length) return 0;
 
-/* =========================================
-   FIND TODAY'S ITEM
-   ========================================= */
+  const today = new Date(getIndiaToday() + "T00:00:00");
+  const start = new Date(today.getFullYear(), 0, 1);
+
+  return Math.floor((today - start) / 86400000) % items.length;
+}
 
 function findToday(items) {
   const today = getIndiaToday();
 
   return items.find(function (item) {
-
     const date = getValue(item, [
       "date",
       "day",
@@ -113,527 +67,334 @@ function findToday(items) {
       "publishedAt"
     ]);
 
-    return String(date).substring(0, 10) === today;
+    return String(date).slice(0, 10) === today;
   });
 }
 
-
-/* =========================================
-   GET DAY INDEX
-   ========================================= */
-
-function getDayIndex(items) {
-
-  if (!items.length) {
-    return 0;
-  }
-
-  const today = new Date(getIndiaToday() + "T00:00:00");
-
-  const start = new Date(today.getFullYear(), 0, 1);
-
-  const difference =
-    Math.floor((today - start) / 86400000);
-
-  return difference % items.length;
+function text(id, value) {
+  const element = document.getElementById(id);
+  if (element) element.textContent = value || "";
 }
 
+function clear(id) {
+  const element = document.getElementById(id);
+  if (element) element.innerHTML = "";
+  return element;
+}
 
 /* =========================================
    TODAY'S FESTIVAL
    ========================================= */
 
-async function loadFestival() {
-
-  const element = document.getElementById("festivalText");
-
-  if (!element) return;
-
+async function loadTodayFestival() {
   try {
+    const items = asArray(await loadJSON("festivals.json"));
+    const festival = findToday(items);
 
-    const data = await loadJSON("festivals.json");
-
-    const festivals = asArray(data);
-
-    const todayFestival = findToday(festivals);
-
-    /*
-      केवल आज की तारीख वाला त्योहार दिखाएं।
-      अगर आज त्योहार नहीं है तो अगला त्योहार
-      गलत तरीके से "आज का त्योहार" में नहीं दिखेगा।
-    */
-
-    if (todayFestival) {
-
-      const name = getValue(todayFestival, [
-        "name",
-        "title",
-        "festival"
-      ]);
-
-      const url = getValue(todayFestival, [
-        "url",
-        "link"
-      ]);
-
-      if (url) {
-
-        element.innerHTML =
-          '<a href="' +
-          url +
-          '">' +
-          name +
-          "</a>";
-
-      } else {
-
-        element.textContent = name;
-      }
-
+    if (festival) {
+      text(
+        "festivalText",
+        getValue(festival, ["name", "title", "festival"]) ||
+        "आज का प्रमुख त्योहार"
+      );
     } else {
-
-      element.textContent =
-        "आज कोई प्रमुख त्योहार नहीं है।";
-
+      text("festivalText", "आज कोई प्रमुख त्योहार नहीं है");
     }
-
   } catch (error) {
-
     console.error("Festival error:", error);
-
-    element.textContent =
-      "आज के त्योहार की जानकारी उपलब्ध नहीं है।";
+    text("festivalText", "आज का त्योहार उपलब्ध नहीं है");
   }
 }
 
-
 /* =========================================
-   TODAY'S DHARMA KNOWLEDGE
+   TODAY'S DHARMA GYAN
    ========================================= */
 
-async function loadKnowledge() {
-
-  const element = document.getElementById("knowledgeText");
-
-  if (!element) return;
-
+async function loadDailyDharmaGyan() {
   try {
+    const items = asArray(await loadJSON("dharma-gyan.json"));
 
-    const data = await loadJSON("dharma-gyan.json");
+    if (!items.length) throw new Error("No Dharma Gyan data");
 
-    const items = asArray(data);
+    const item = findToday(items) || items[dayIndex(items)];
 
-    if (!items.length) {
-
-      element.textContent =
-        "धर्म ज्ञान जल्द उपलब्ध होगा।";
-
-      return;
-    }
-
-    const todayItem = findToday(items);
-
-    const item =
-      todayItem || items[getDayIndex(items)];
-
-    const title = getValue(item, [
-      "title",
-      "name",
-      "heading"
-    ]);
-
-    const text = getValue(item, [
+    const title = getValue(item, ["title", "name", "heading"]);
+    const content = getValue(item, [
       "content",
       "description",
       "text",
-      "knowledge",
-      "meaning"
+      "meaning",
+      "answer"
     ]);
 
-    if (title && text) {
-
-      element.innerHTML =
-        "<strong>" +
-        title +
-        "</strong><br>" +
-        text;
-
-    } else {
-
-      element.textContent =
-        text || title || "आज का धर्म ज्ञान उपलब्ध नहीं है।";
-    }
-
+    text(
+      "knowledgeText",
+      title && content ? title + " — " + content : (content || title)
+    );
   } catch (error) {
-
-    console.error("Dharma knowledge error:", error);
-
-    element.textContent =
-      "धर्म ज्ञान लोड नहीं हो पाया।";
+    console.error("Dharma Gyan error:", error);
+    text("knowledgeText", "धर्म ज्ञान उपलब्ध नहीं है।");
   }
 }
-
 
 /* =========================================
    TODAY'S MANTRA
    ========================================= */
 
-async function loadMantra() {
-
-  const mantraElement =
-    document.getElementById("mantraText");
-
-  const meaningElement =
-    document.getElementById("mantraMeaning");
-
-  if (!mantraElement) return;
-
+async function loadDailyMantra() {
   try {
+    const items = asArray(await loadJSON("mantras.json"));
 
-    const data = await loadJSON("mantras.json");
+    if (!items.length) throw new Error("No mantra data");
 
-    const mantras = asArray(data);
+    const item = findToday(items) || items[dayIndex(items)];
 
-    if (!mantras.length) return;
+    text(
+      "mantraText",
+      getValue(item, ["mantra", "text", "title", "name"]) ||
+      "ॐ नमः शिवाय"
+    );
 
-    const todayMantra =
-      findToday(mantras);
-
-    const mantra =
-      todayMantra ||
-      mantras[getDayIndex(mantras)];
-
-    const text = getValue(mantra, [
-      "mantra",
-      "text",
-      "title",
-      "name"
-    ]);
-
-    const meaning = getValue(mantra, [
-      "meaning",
-      "description",
-      "arth"
-    ]);
-
-    mantraElement.textContent =
-      text || "ॐ नमः शिवाय";
-
-    if (meaningElement) {
-
-      meaningElement.textContent =
-        meaning || "";
-    }
-
+    text(
+      "mantraMeaning",
+      getValue(item, ["meaning", "description", "benefit", "arth"])
+    );
   } catch (error) {
-
     console.error("Mantra error:", error);
-
-    mantraElement.textContent =
-      "ॐ नमः शिवाय";
+    text("mantraText", "ॐ नमः शिवाय");
+    text("mantraMeaning", "");
   }
 }
-
 
 /* =========================================
    TODAY'S QUIZ
    ========================================= */
 
-async function loadQuiz() {
+function getOptions(item) {
+  const options = getValue(item, ["options", "choices"]);
 
-  const questionElement =
-    document.getElementById("quizQuestion");
+  if (Array.isArray(options)) return options;
 
-  const optionsElement =
-    document.getElementById("quizOptions");
-
-  const resultElement =
-    document.getElementById("quizResult");
-
-  if (!questionElement || !optionsElement) {
-    return;
+  if (options && typeof options === "object") {
+    return Object.values(options);
   }
 
-  try {
+  return [];
+}
 
-    const data = await loadJSON("quiz.json");
+function optionText(option) {
+  if (typeof option === "string" || typeof option === "number") {
+    return String(option);
+  }
 
-    const questions = asArray(data);
+  return getValue(option, ["text", "label", "option", "answer"]);
+}
 
-    if (!questions.length) {
+function checkAnswer(selected, item, buttons) {
+  const answer = getValue(item, [
+    "answer",
+    "correctAnswer",
+    "correct",
+    "correct_option"
+  ]);
 
-      questionElement.textContent =
-        "आज की प्रश्नोत्तरी उपलब्ध नहीं है।";
+  const normalizedAnswer = String(answer).trim().toLowerCase();
+  const normalizedSelected = String(selected).trim().toLowerCase();
 
-      return;
-    }
+  let correct = normalizedSelected === normalizedAnswer;
 
-    const question =
-      questions[getDayIndex(questions)];
+  const options = getOptions(item);
 
-    const questionText =
-      getValue(question, [
-        "question",
-        "title",
-        "text"
-      ]);
+  if (!correct && answer !== "" && options.length) {
+    const answerIndex = Number(answer);
 
-    const options =
-      question.options ||
-      question.answers ||
-      [];
-
-    const correctAnswer =
-      question.answer ??
-      question.correctAnswer ??
-      question.correct ??
-      question.correctOption;
-
-    questionElement.textContent =
-      questionText || "आज का प्रश्न";
-
-    optionsElement.innerHTML = "";
-
-    options.forEach(function (option, index) {
-
-      const button =
-        document.createElement("button");
-
-      button.className = "quiz-option";
-
-      if (
-        typeof option === "object" &&
-        option !== null
-      ) {
-
-        button.textContent =
-          option.text ||
-          option.answer ||
-          option.name ||
-          "";
-
-      } else {
-
-        button.textContent =
-          option;
-      }
-
-      button.addEventListener("click", function () {
-
-        const selectedValue =
-          typeof option === "object" &&
-          option !== null
-            ? (
-                option.text ||
-                option.answer ||
-                option.name ||
-                ""
-              )
-            : option;
-
-        let isCorrect = false;
-
-        if (
-          typeof correctAnswer === "number"
-        ) {
-
-          isCorrect =
-            index === correctAnswer ||
-            index + 1 === correctAnswer;
-
-        } else {
-
-          isCorrect =
-            String(selectedValue).trim() ===
-            String(correctAnswer).trim();
-        }
-
-        const allButtons =
-          optionsElement.querySelectorAll(
-            ".quiz-option"
-          );
-
-        allButtons.forEach(function (btn) {
-          btn.disabled = true;
-        });
-
-        if (resultElement) {
-
-          resultElement.textContent =
-            isCorrect
-              ? "✅ सही उत्तर!"
-              : "❌ गलत उत्तर!";
-        }
+    if (!Number.isNaN(answerIndex)) {
+      const index = options.findIndex(function (option) {
+        return option === answerIndex || String(option) === String(answer);
       });
 
-      optionsElement.appendChild(button);
-    });
+      if (index >= 0) {
+        correct = String(index) === String(selected);
+      } else {
+        correct = String(answerIndex) === String(selected);
+      }
+    }
+  }
 
-  } catch (error) {
+  buttons.forEach(function (button) {
+    button.disabled = true;
+  });
 
-    console.error("Quiz error:", error);
+  const result = document.getElementById("quizResult");
 
-    questionElement.textContent =
-      "प्रश्नोत्तरी लोड नहीं हो पाई।";
+  if (result) {
+    result.textContent = correct
+      ? "सही उत्तर!"
+      : answer
+        ? "सही उत्तर: " + answer
+        : "उत्तर दर्ज किया गया।";
   }
 }
 
+async function loadDailyQuiz() {
+  try {
+    const items = asArray(await loadJSON("quiz.json"));
+
+    if (!items.length) throw new Error("No quiz data");
+
+    const item = findToday(items) || items[dayIndex(items)];
+
+    text(
+      "quizQuestion",
+      getValue(item, ["question", "q", "title", "text"]) ||
+      "आज का प्रश्न उपलब्ध नहीं है।"
+    );
+
+    const container = clear("quizOptions");
+    const result = document.getElementById("quizResult");
+
+    if (result) result.textContent = "";
+
+    if (!container) return;
+
+    const options = getOptions(item);
+
+    if (!options.length) {
+      return;
+    }
+
+    const buttons = [];
+
+    options.forEach(function (option, index) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "quiz-option";
+      button.textContent = optionText(option) || ("विकल्प " + (index + 1));
+
+      button.addEventListener("click", function () {
+        checkAnswer(
+          optionText(option) || index,
+          item,
+          buttons
+        );
+      });
+
+      buttons.push(button);
+      container.appendChild(button);
+    });
+  } catch (error) {
+    console.error("Quiz error:", error);
+    text("quizQuestion", "आज का प्रश्न उपलब्ध नहीं है।");
+  }
+}
 
 /* =========================================
    LATEST ARTICLES
    ========================================= */
 
-async function loadArticles() {
-
-  const container =
-    document.getElementById("latestArticles");
-
-  if (!container) return;
-
+async function loadLatestArticles() {
   try {
+    const items = asArray(await loadJSON("articles.json"));
+    const container = clear("latestArticles");
 
-    const data =
-      await loadJSON("articles.json");
+    if (!container) return;
+    if (!items.length) return;
 
-    const articles =
-      asArray(data);
+    const sorted = items.slice().sort(function (a, b) {
+      const dateA = getValue(a, ["date", "publishedAt", "publishDate"]);
+      const dateB = getValue(b, ["date", "publishedAt", "publishDate"]);
 
-    if (!articles.length) {
+      return String(dateB).localeCompare(String(dateA));
+    });
 
-      container.innerHTML =
-        "<p>अभी कोई लेख उपलब्ध नहीं है।</p>";
+    sorted.slice(0, 6).forEach(function (article) {
+      const card = document.createElement("article");
+      card.className = "latest-article-card";
 
-      return;
-    }
+      const title = getValue(article, ["title", "name", "heading"]);
+      const description = getValue(article, [
+        "description",
+        "excerpt",
+        "summary",
+        "text"
+      ]);
+      const url = getValue(article, ["url", "link", "href"]);
 
-    /*
-      Latest articles:
-      अगर date मौजूद है तो newest पहले।
-    */
-
-    const sortedArticles =
-      [...articles].sort(function (a, b) {
-
-        const dateA =
-          getValue(a, [
-            "date",
-            "publishedAt",
-            "publishDate"
-          ]);
-
-        const dateB =
-          getValue(b, [
-            "date",
-            "publishedAt",
-            "publishDate"
-          ]);
-
-        return String(dateB).localeCompare(
-          String(dateA)
-        );
-      });
-
-    const latest =
-      sortedArticles.slice(0, 6);
-
-    container.innerHTML = "";
-
-    latest.forEach(function (article) {
-
-      const title =
-        getValue(article, [
-          "title",
-          "name",
-          "heading"
-        ]);
-
-      const description =
-        getValue(article, [
-          "description",
-          "excerpt",
-          "summary",
-          "content"
-        ]);
-
-      const url =
-        getValue(article, [
-          "url",
-          "link"
-        ]);
-
-      const card =
-        document.createElement("article");
-
-      card.className =
-        "latest-article-card card";
-
-      const heading =
-        document.createElement("h3");
+      const heading = document.createElement("h3");
 
       if (url) {
-
-        heading.innerHTML =
-          '<a href="' +
-          url +
-          '">' +
-          title +
-          "</a>";
-
+        const link = document.createElement("a");
+        link.href = url;
+        link.textContent = title;
+        heading.appendChild(link);
       } else {
-
-        heading.textContent =
-          title;
+        heading.textContent = title;
       }
 
       card.appendChild(heading);
 
       if (description) {
-
-        const paragraph =
-          document.createElement("p");
-
-        paragraph.textContent =
-          String(description)
-            .substring(0, 160);
-
+        const paragraph = document.createElement("p");
+        paragraph.textContent = description;
         card.appendChild(paragraph);
       }
 
       container.appendChild(card);
     });
-
   } catch (error) {
-
     console.error("Articles error:", error);
-
-    container.innerHTML =
-      "<p>लेख लोड नहीं हो पाए।</p>";
   }
 }
-
 
 /* =========================================
    MOBILE MENU
    ========================================= */
 
-function setupMobileMenu() {
+function setupMenu() {
+  const button = document.querySelector(".menu-btn");
+  const nav = document.querySelector(".nav");
 
-  const menuButton =
-    document.querySelector(".menu-btn");
+  if (!button || !nav) return;
 
-  const nav =
-    document.querySelector(".nav");
+  button.setAttribute("aria-expanded", "false");
 
-  if (!menuButton || !nav) {
-    return;
-  }
+  button.addEventListener("click", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
 
-  menuButton.addEventListener(
-    "click",
-    function () {
+    const isOpen = nav.classList.toggle("mobile-open");
+    button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
 
-      nav.classList.toggle("mobile-open");
+  nav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      nav.classList.remove("mobile-open");
+      button.setAttribute("aria-expanded", "false");
+    });
+  });
 
+  document.addEventListener("click", function (event) {
+    if (
+      nav.classList.contains("mobile-open") &&
+      !nav.contains(event.target) &&
+      !button.contains(event.target)
+    ) {
+      nav.classList.remove("mobile-open");
+      button.setAttribute("aria-expanded", "false");
     }
-  );
+  });
 }
+
+/* =========================================
+   PAGE READY
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+  setupMenu();
+
+  loadTodayFestival();
+  loadDailyDharmaGyan();
+  loadDailyMantra();
+  loadDailyQuiz();
+  loadLatestArticles();
+});
