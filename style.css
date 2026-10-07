@@ -589,3 +589,159 @@ footer a:hover {
     font-size: 1.05rem;
   }
 }
+
+
+/* =========================================
+   DHARMBODH - DEVOTIONAL HOMEPAGE
+   ========================================= */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "ॐ";
+  position: absolute;
+  right: 7%;
+  top: 12%;
+  font-family: "Noto Sans Devanagari", "Mangal", sans-serif;
+  font-size: clamp(5rem, 14vw, 10rem);
+  line-height: 1;
+  color: rgba(139, 63, 22, 0.07);
+  pointer-events: none;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+  position: relative;
+  z-index: 1;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #8b3f16;
+  color: #fff;
+  font-weight: 700;
+  border: 1px solid #8b3f16;
+  text-decoration: none;
+  box-shadow: 0 5px 14px rgba(91, 44, 16, 0.15);
+}
+
+.btn:hover {
+  background: #6f2f12;
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.55);
+  color: #7a3513;
+}
+
+.btn-outline:hover {
+  background: #fff;
+  color: #6f2f12;
+}
+
+.devotional-intro .card {
+  position: relative;
+  overflow: hidden;
+  border-top: 3px solid #c47736;
+}
+
+.devotional-intro .card::after {
+  content: "✦";
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  color: rgba(139, 63, 22, 0.16);
+  font-size: 1.7rem;
+}
+
+.devotional-intro .card h3 {
+  margin: 0 0 8px;
+  color: #542c18;
+  font-size: 1.15rem;
+}
+
+.devotional-intro .card h3 a {
+  color: inherit;
+}
+
+.dharma-essence-card {
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(231, 159, 74, 0.14), transparent 45%),
+    #fffdf8;
+  border: 1px solid #e4c79f;
+}
+
+.om-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: #fff0dc;
+  color: #8b3f16;
+  font-family: "Noto Sans Devanagari", "Mangal", sans-serif;
+  font-size: 2.3rem;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px #e8cba6;
+}
+
+.dharma-essence-card h2 {
+  margin-bottom: 8px;
+}
+
+.essence-text {
+  max-width: 760px;
+  margin: 0 auto !important;
+  font-size: 1.08rem;
+}
+
+#teerthYatraSection .latest-article-card {
+  border-top: 3px solid #9b4b18;
+}
+
+#teerthYatraSection .section-title h2 {
+  color: #542c18;
+}
+
+@media (max-width: 700px) {
+  .hero::before {
+    right: -8%;
+    top: 7%;
+    font-size: 7rem;
+  }
+
+  .hero-actions {
+    gap: 9px;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .devotional-intro .article-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .essence-text {
+    font-size: 1rem;
+  }
+}
