@@ -761,13 +761,4 @@ footer a:hover {
   color: #8b3f16;
 }
 
-
-/* Long-form story design */
-.story-page{max-width:900px;margin:30px auto;padding:22px}
-.story-hero-image{display:block;width:100%;height:auto;border-radius:20px;margin:0 auto 24px;box-shadow:0 8px 24px rgba(90,50,20,.12)}
-.story-page h1{font-size:clamp(1.9rem,4vw,2.7rem);color:#633719;margin:8px 0 18px}
-.story-page h2{font-size:1.35rem;color:#7a431e;margin:30px 0 10px;border-left:5px solid #c77a36;padding-left:12px}
-.story-page p{font-size:1.06rem;line-height:1.95;color:#51443b}
-.story-intro{background:#fff7ea;border:1px solid #ead1ae;border-radius:14px;padding:18px;font-size:1.12rem!important}
-.story-highlight{margin-top:30px;background:#fff1d8;border:1px solid #e4bd8b;border-radius:14px;padding:18px;line-height:1.8;color:#633719}
-@media(max-width:700px){.story-page{padding:15px}.story-page h2{font-size:1.18rem}.story-page p{font-size:1rem;line-height:1.82}.story-hero-image{border-radius:14px}}
+.story-page{max-width:900px;margin:28px auto}.story-hero-image{display:block;width:100%;height:auto;border-radius:20px;margin:12px 0 24px;box-shadow:0 8px 24px rgba(80,45,20,.15)}.story-page h1{color:#5f351c;font-size:clamp(1.9rem,4vw,2.7rem)}.story-page h2{color:#7b431e;margin-top:30px;border-left:5px solid #c47736;padding-left:12px}.story-page p{font-size:1.06rem;line-height:1.95}.story-highlight{margin-top:30px;padding:18px;background:#fff3dd;border:1px solid #e2bd8b;border-radius:14px}@media(max-width:700px){.story-page p{font-size:1rem;line-height:1.82}.story-hero-image{border-radius:14px}}

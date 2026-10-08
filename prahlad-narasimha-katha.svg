@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500">
-<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#fff1d6"/><stop offset="1" stop-color="#f4d6a8"/></linearGradient></defs>
-<rect width="1200" height="500" rx="32" fill="url(#g)"/>
-<circle cx="600" cy="170" r="92" fill="#fffaf1" stroke="#b96b2c" stroke-width="5"/>
-<text x="600" y="205" text-anchor="middle" font-size="100">🦁</text>
-<text x="600" y="330" text-anchor="middle" font-family="Noto Sans Devanagari, Arial" font-size="46" font-weight="700" fill="#653718">नरसिंह</text>
-<text x="600" y="385" text-anchor="middle" font-family="Noto Sans Devanagari, Arial" font-size="25" fill="#855c3c">भक्ति • धर्म की विजय</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#fff3df"/><stop offset="1" stop-color="#e8c18f"/></linearGradient></defs><rect width="1200" height="520" rx="35" fill="url(#g)"/><circle cx="600" cy="175" r="105" fill="#fffaf3" stroke="#b66a2c" stroke-width="6"/><text x="600" y="215" text-anchor="middle" font-size="110">🦁</text><text x="600" y="345" text-anchor="middle" font-family="Noto Sans Devanagari,Arial" font-size="48" font-weight="700" fill="#5c321a">प्रह्लाद और नरसिंह की कथा</text><text x="600" y="400" text-anchor="middle" font-family="Noto Sans Devanagari,Arial" font-size="26" fill="#805b3d">धर्मबोध • धार्मिक कथा</text></svg>
