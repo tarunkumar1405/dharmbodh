@@ -29,6 +29,36 @@
 @media(max-width:500px){.festival-season-tag{display:none}.festival-feature-content{padding:15px}.festival-feature-content h3{font-size:1.12rem}.festival-link-row a{font-size:.84rem;padding:7px 10px}.festival-image-link img{aspect-ratio:auto;object-fit:contain}}
 </style>
 
+
+<style>
+/* Daily Panchang and Bhakti feature */
+.daily-spiritual-section{margin-top:12px}
+.daily-date-pill{font-size:.85rem;font-weight:700;color:#8a4a1c;background:#fff0d9;border:1px solid #ead0ad;padding:6px 12px;border-radius:999px}
+.daily-spiritual-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.daily-panchang-card,.daily-bhakti-card{border:1px solid #ead5bb;border-radius:20px;padding:22px;background:linear-gradient(145deg,#fffaf3,#fff);box-shadow:0 7px 22px rgba(92,48,16,.06);min-width:0}
+.daily-bhakti-card{background:radial-gradient(circle at 100% 0,#f9e3c4 0,transparent 35%),linear-gradient(145deg,#fff7eb,#fff)}
+.daily-spiritual-heading{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+.daily-spiritual-icon{display:grid;place-items:center;width:52px;height:52px;flex:0 0 52px;border-radius:16px;background:#fff0d8;font-size:1.65rem}
+.daily-spiritual-eyebrow{margin:0 0 3px;color:#9a511d;font-size:.84rem;font-weight:800}
+.daily-spiritual-heading h3{margin:0;color:#633719;font-size:1.35rem}
+.daily-panchang-date{font-size:1.06rem;font-weight:800;color:#6c3c1d;margin:0 0 14px}
+.panchang-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.panchang-detail{padding:12px;border:1px solid #efdfca;border-radius:12px;background:#fff}
+.panchang-detail span{display:block;font-size:.82rem;color:#816a55;margin-bottom:5px}
+.panchang-detail strong{display:block;font-size:.95rem;color:#59391f;line-height:1.5}
+.panchang-honesty-note{font-size:.84rem;line-height:1.7;color:#79634e;background:#fff4e3;border-radius:10px;padding:11px;margin:13px 0}
+.daily-spiritual-link{font-weight:800;color:#974b17}
+.bhakti-feature{padding:17px;border-radius:15px;background:rgba(255,255,255,.8);border:1px solid #efddc4;min-height:150px}
+.bhakti-label{margin:0 0 9px;color:#9a511d;font-weight:800;font-size:.88rem}
+.bhakti-main{font-size:1.22rem;line-height:1.75;font-weight:800;color:#61391d;margin:0 0 9px}
+.bhakti-description{color:#6e5946;line-height:1.75;margin:0}
+.bhakti-mini-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.bhakti-mini-links a{font-size:.88rem;font-weight:700;color:#8b4516;background:#fff;border:1px solid #ead5bb;border-radius:999px;padding:8px 11px}
+.bhakti-mini-links a:hover{background:#8b4516;color:#fff;text-decoration:none}
+@media(max-width:800px){.daily-spiritual-grid{grid-template-columns:1fr;gap:16px}}
+@media(max-width:500px){.daily-panchang-card,.daily-bhakti-card{padding:15px}.daily-date-pill{display:none}.daily-spiritual-heading h3{font-size:1.18rem}.panchang-detail{padding:10px}.panchang-detail strong{font-size:.87rem}.bhakti-main{font-size:1.1rem}}
+</style>
+
 </head>
 <body>
 
@@ -167,7 +197,7 @@
           <h3>माँ दुर्गा की भक्ति और शक्ति का पावन उत्सव</h3>
           <p>माँ के नौ स्वरूप, पूजा-विधि, मंत्र, व्रत कथा और आरती से जुड़ी जानकारी पढ़ें।</p>
           <div class="festival-link-row">
-            <a href="navdurga-ke-9-swarup.html">माँ दुर्गा के नौ स्वरूप जानें →</a>
+            <a href="devi-devta.html">माँ दुर्गा के नौ स्वरूप →</a>
             <a href="vrat-tyohar.html">व्रत और पूजा-विधि →</a>
             <a href="mantra.html">मंत्र और जप →</a>
           </div>
@@ -184,13 +214,56 @@
           <div class="festival-link-row">
             <a href="ram-janma-katha.html">श्रीराम जन्म कथा →</a>
             <a href="hanuman-bal-katha.html">हनुमान जी की कथा →</a>
-            <a href="ramayan-ki-kathayein.html">रामायण की कथाएँ पढ़ें →</a>
+            <a href="dharmik-katha.html">सभी धार्मिक कथाएँ →</a>
           </div>
         </div>
       </article>
     </div>
   </section>
   <!-- End Navratri & Ramleela Festival Special -->
+
+
+  <!-- Aaj Ka Panchang + Aaj Ki Bhakti -->
+  <section class="section daily-spiritual-section" id="aaj-ka-panchang-bhakti">
+    <div class="section-title">
+      <h2>🪔 आज का पंचांग एवं आज की भक्ति</h2>
+      <span class="daily-date-pill" id="dailyDateLabel">आज की जानकारी</span>
+    </div>
+    <div class="daily-spiritual-grid">
+      <article class="daily-panchang-card">
+        <div class="daily-spiritual-heading">
+          <span class="daily-spiritual-icon">📅</span>
+          <div><p class="daily-spiritual-eyebrow">दैनिक पंचांग जानकारी</p><h3>आज का पंचांग</h3></div>
+        </div>
+        <p class="daily-panchang-date" id="panchangGregorianDate">तारीख लोड हो रही है…</p>
+        <div class="panchang-detail-grid">
+          <div class="panchang-detail"><span>स्थान</span><strong>नई दिल्ली</strong></div>
+          <div class="panchang-detail"><span>वार</span><strong id="panchangWeekday">—</strong></div>
+          <div class="panchang-detail"><span>तिथि</span><strong>सत्यापित पंचांग डेटा आवश्यक</strong></div>
+          <div class="panchang-detail"><span>नक्षत्र</span><strong>सत्यापित पंचांग डेटा आवश्यक</strong></div>
+        </div>
+        <p class="panchang-honesty-note">तिथि, नक्षत्र, योग और सूर्योदय समय स्थान के अनुसार बदल सकते हैं। गलत जानकारी से बचने के लिए इन्हें विश्वसनीय दैनिक पंचांग स्रोत से जोड़ना बाकी है।</p>
+        <a class="daily-spiritual-link" href="vrat-tyohar.html">व्रत-त्योहार देखें →</a>
+      </article>
+      <article class="daily-bhakti-card">
+        <div class="daily-spiritual-heading">
+          <span class="daily-spiritual-icon">🌺</span>
+          <div><p class="daily-spiritual-eyebrow">हर दिन एक नया संदेश</p><h3>आज की भक्ति</h3></div>
+        </div>
+        <div class="bhakti-feature" aria-live="polite">
+          <p class="bhakti-label" id="bhaktiType">आज का सुविचार</p>
+          <p class="bhakti-main" id="bhaktiMain">सत्य, करुणा और सेवा को अपने जीवन में स्थान दें।</p>
+          <p class="bhakti-description" id="bhaktiDescription">छोटे अच्छे कर्म भी जीवन में सकारात्मक परिवर्तन ला सकते हैं।</p>
+        </div>
+        <div class="bhakti-mini-links">
+          <a href="mantra.html">📿 मंत्र और जप</a>
+          <a href="dharmik-katha.html">📖 धार्मिक कथाएँ</a>
+          <a href="devi-devta.html">🙏 देवी-देवता</a>
+        </div>
+      </article>
+    </div>
+  </section>
+  <!-- End Aaj Ka Panchang + Aaj Ki Bhakti -->
 
   <!-- Daily Bhakti -->
   <section class="section">
@@ -363,6 +436,42 @@
 </footer>
 
 <script src="script.js?v=2"></script>
+
+
+<script>
+(function(){
+  const now = new Date();
+  const dateOptions = { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'long', year: 'numeric' };
+  const weekdayOptions = { timeZone: 'Asia/Kolkata', weekday: 'long' };
+  const dateEl = document.getElementById('panchangGregorianDate');
+  const weekdayEl = document.getElementById('panchangWeekday');
+  const labelEl = document.getElementById('dailyDateLabel');
+  if (dateEl) dateEl.textContent = new Intl.DateTimeFormat('hi-IN', dateOptions).format(now);
+  if (weekdayEl) weekdayEl.textContent = new Intl.DateTimeFormat('hi-IN', weekdayOptions).format(now);
+  if (labelEl) labelEl.textContent = new Intl.DateTimeFormat('hi-IN', {timeZone:'Asia/Kolkata', day:'numeric', month:'short'}).format(now);
+
+  const bhaktiItems = [
+    {type:'आज का सुविचार', main:'सत्य, करुणा और सेवा को अपने जीवन में स्थान दें।', desc:'छोटे अच्छे कर्म भी जीवन में सकारात्मक परिवर्तन ला सकते हैं।'},
+    {type:'आज का संकल्प', main:'आज किसी की सहायता बिना किसी अपेक्षा के करें।', desc:'सेवा और सहानुभूति भारतीय आध्यात्मिक परंपरा के महत्वपूर्ण मूल्य हैं।'},
+    {type:'आज की भक्ति', main:'कुछ पल शांत होकर ईश्वर का स्मरण करें।', desc:'श्रद्धा के साथ किया गया छोटा-सा जप भी मन को एकाग्र करने का अवसर देता है।'},
+    {type:'आज की सीख', main:'क्रोध के समय ठहरना और सोचकर बोलना भी साधना है।', desc:'संयम, विनम्रता और मधुर वाणी संबंधों को मजबूत बनाते हैं।'},
+    {type:'आज का विचार', main:'अपने कर्तव्य को ईमानदारी से निभाना भी धर्म का एक रूप है।', desc:'दैनिक जीवन में सत्य और जिम्मेदारी को अपनाने का प्रयास करें।'},
+    {type:'आज का संदेश', main:'कृतज्ञता रखें और जो आपके पास है उसका सम्मान करें।', desc:'कृतज्ञता हमें दूसरों के योगदान और जीवन के छोटे सुखों को पहचानने में मदद करती है।'},
+    {type:'आज का संकल्प', main:'प्रकृति, जीवों और अपने आसपास के लोगों के प्रति दयालु रहें।', desc:'दया और अहिंसा का भाव रोज़मर्रा के व्यवहार से शुरू होता है।'}
+  ];
+  // Use the calendar date in India (Asia/Kolkata), not the visitor's timezone.
+  const indiaDate = new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Kolkata', year:'numeric', month:'2-digit', day:'2-digit'}).format(now);
+  const dayNumber = Number(indiaDate.replace(/-/g, ''));
+  const dayIndex = dayNumber % bhaktiItems.length;
+  const item = bhaktiItems[dayIndex];
+  const type = document.getElementById('bhaktiType');
+  const main = document.getElementById('bhaktiMain');
+  const desc = document.getElementById('bhaktiDescription');
+  if (type) type.textContent = item.type;
+  if (main) main.textContent = item.main;
+  if (desc) desc.textContent = item.desc;
+})();
+</script>
 
 </body>
 </html>
