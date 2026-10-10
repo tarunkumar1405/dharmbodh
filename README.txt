@@ -1,14 +1,8 @@
-DharmBodh – Aaj Ka Panchang (No-JSON review package)
+DharmBodh — latest index.html with Panchang icon fix
 
-Included files:
-- index.html: homepage with the “आज का पंचांग” and “आज की भक्ति” sections.
-- navratri-special.jpg and ramleela-mahotsav.jpg: homepage banner images.
+Based on the user's uploaded latest index.html.
+Only change: the Panchang card icon changed from 📅 to 🪔 so Android does not show a misleading fixed July 17 calendar emoji.
+The links and other page content were not intentionally changed.
 
-JSON is NOT used for this feature. The date and weekday are rendered with built-in JavaScript using India time (Asia/Kolkata). The location is shown as New Delhi.
-
-Important: Tithi and Nakshatra are deliberately marked “सत्यापित पंचांग डेटा आवश्यक”. This package does not invent these values. A reliable panchang data source still needs to be connected before real tithi/nakshatra values can be displayed.
-
-Existing site dependency:
-- The homepage continues to load the existing root-level file script.js?v=2. Keep your current script.js in the repository; this package does not replace it.
-
-Review only. No GitHub repository has been changed.
+Upload guidance: back up your current index.html first, then replace only index.html if you approve. The two banner images are included for convenience; do not overwrite them if your live versions are newer.
+No GitHub changes have been made.
