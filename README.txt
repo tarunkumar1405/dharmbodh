@@ -1,8 +1,5 @@
-DharmBodh — latest index.html with Panchang icon fix
+DharmBodh Panchang Diya Icon Fix
 
-Based on the user's uploaded latest index.html.
-Only change: the Panchang card icon changed from 📅 to 🪔 so Android does not show a misleading fixed July 17 calendar emoji.
-The links and other page content were not intentionally changed.
+This package contains the supplied latest index.html with only the Panchang calendar emoji replaced by an inline SVG diya icon and the CSS required to style it. Other page content and links are unchanged.
 
-Upload guidance: back up your current index.html first, then replace only index.html if you approve. The two banner images are included for convenience; do not overwrite them if your live versions are newer.
-No GitHub changes have been made.
+Review before uploading. No GitHub changes were made.
