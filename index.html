@@ -239,10 +239,10 @@
         <div class="panchang-detail-grid">
           <div class="panchang-detail"><span>स्थान</span><strong>नई दिल्ली</strong></div>
           <div class="panchang-detail"><span>वार</span><strong id="panchangWeekday">—</strong></div>
-          <div class="panchang-detail"><span>तिथि</span><strong>सत्यापित पंचांग डेटा आवश्यक</strong></div>
-          <div class="panchang-detail"><span>नक्षत्र</span><strong>सत्यापित पंचांग डेटा आवश्यक</strong></div>
+          <div class="panchang-detail"><span>तिथि</span><strong id="panchangTithi">इस तारीख का सत्यापित डेटा उपलब्ध नहीं है</strong></div>
+          <div class="panchang-detail"><span>नक्षत्र</span><strong id="panchangNakshatra">इस तारीख का सत्यापित डेटा उपलब्ध नहीं है</strong></div>
         </div>
-        <p class="panchang-honesty-note">तिथि, नक्षत्र, योग और सूर्योदय समय स्थान के अनुसार बदल सकते हैं। गलत जानकारी से बचने के लिए इन्हें विश्वसनीय दैनिक पंचांग स्रोत से जोड़ना बाकी है।</p>
+        <p class="panchang-honesty-note">तिथि और नक्षत्र स्थान व समय के अनुसार बदलते हैं। अभी सत्यापित डेटा केवल 11 अक्टूबर 2026 के लिए जोड़ा गया है; अन्य तारीखों का डेटा उपलब्ध होने पर ही दिखेगा। बाकी है।</p>
         <a class="daily-spiritual-link" href="vrat-tyohar.html">व्रत-त्योहार देखें →</a>
       </article>
       <article class="daily-bhakti-card">
@@ -449,6 +449,28 @@
   if (dateEl) dateEl.textContent = new Intl.DateTimeFormat('hi-IN', dateOptions).format(now);
   if (weekdayEl) weekdayEl.textContent = new Intl.DateTimeFormat('hi-IN', weekdayOptions).format(now);
   if (labelEl) labelEl.textContent = new Intl.DateTimeFormat('hi-IN', {timeZone:'Asia/Kolkata', day:'numeric', month:'short'}).format(now);
+  // Verified New Delhi Panchang data for 11 October 2026.
+  // Source: Drik Panchang, New Delhi day Panchang.
+  const panchangDate = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).format(now);
+  const tithiEl = document.getElementById('panchangTithi');
+  const nakshatraEl = document.getElementById('panchangNakshatra');
+  const verifiedPanchang = {
+    '2026-10-11': {
+      tithi: 'शुक्ल प्रतिपदा (रात 9:30 बजे तक)',
+      nakshatra: 'चित्रा (रात 10:32 बजे तक)'
+    }
+  };
+  const panchang = verifiedPanchang[panchangDate];
+  if (panchang) {
+    if (tithiEl) tithiEl.textContent = panchang.tithi;
+    if (nakshatraEl) nakshatraEl.textContent = panchang.nakshatra;
+  } else {
+    if (tithiEl) tithiEl.textContent = 'इस तारीख का सत्यापित डेटा उपलब्ध नहीं है';
+    if (nakshatraEl) nakshatraEl.textContent = 'इस तारीख का सत्यापित डेटा उपलब्ध नहीं है';
+  }
+
 
   const bhaktiItems = [
     {type:'आज का सुविचार', main:'सत्य, करुणा और सेवा को अपने जीवन में स्थान दें।', desc:'छोटे अच्छे कर्म भी जीवन में सकारात्मक परिवर्तन ला सकते हैं।'},
