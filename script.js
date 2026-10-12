@@ -190,43 +190,41 @@ function optionText(option) {
   return getValue(option, ["text", "label", "option", "answer"]);
 }
 
-function checkAnswer(selectedIndex, item, buttons) {
-  const answer = getValue(item, [
-    "answer",
-    "correctAnswer",
-    "correct",
-    "correct_option"
+function checkAnswer(selected, item, buttons) {
+  const rawAnswer = getValue(item, [
+    "answer", "correctAnswer", "correct", "correct_option"
   ]);
   const options = getOptions(item);
-  const answerText = String(answer ?? "").trim();
-  let correctIndex = -1;
+  const answerText = String(rawAnswer).trim();
+  const answerNumber = Number(answerText);
+  const answerIsIndex = answerText !== "" && Number.isInteger(answerNumber) &&
+    answerNumber >= 0 && answerNumber < options.length;
+  const correctOption = answerIsIndex ? options[answerNumber] : null;
+  const correctLabel = correctOption !== null
+    ? (optionText(correctOption) || String(correctOption))
+    : answerText;
 
-  // Most quiz.json entries store the correct option as a zero-based index.
-  if (answerText !== "" && /^\d+$/.test(answerText)) {
-    const candidate = Number(answerText);
-    if (candidate >= 0 && candidate < options.length) correctIndex = candidate;
-  } else {
-    // Also support data that stores the correct option as its visible text.
-    correctIndex = options.findIndex(function (option) {
-      return String(optionText(option) ?? "").trim().toLowerCase() === answerText.toLowerCase();
-    });
-  }
-
-  const correct = Number(selectedIndex) === correctIndex;
-  buttons.forEach(function (button) {
-    button.disabled = true;
+  const selectedText = String(selected).trim().toLowerCase();
+  const selectedIndex = options.findIndex(function (option, index) {
+    return selectedText === String(optionText(option)).trim().toLowerCase() ||
+      selectedText === String(index);
   });
 
+  let correct = false;
+  if (answerIsIndex) {
+    correct = selectedIndex === answerNumber ||
+      selectedText === String(correctLabel).trim().toLowerCase();
+  } else {
+    correct = selectedText === answerText.toLowerCase() ||
+      selectedText === String(correctLabel).trim().toLowerCase();
+  }
+
+  buttons.forEach(function (button) { button.disabled = true; });
   const result = document.getElementById("quizResult");
   if (result) {
-    const correctLabel = correctIndex >= 0
-      ? (optionText(options[correctIndex]) || String(options[correctIndex]))
-      : "";
     result.textContent = correct
       ? "सही उत्तर!"
-      : correctLabel
-        ? "सही उत्तर: " + correctLabel
-        : "उत्तर दर्ज किया गया।";
+      : (correctLabel ? "सही उत्तर: " + correctLabel : "उत्तर दर्ज किया गया।");
   }
 }
 
@@ -266,7 +264,11 @@ async function loadDailyQuiz() {
       button.textContent = optionText(option) || ("विकल्प " + (index + 1));
 
       button.addEventListener("click", function () {
-        checkAnswer(index, item, buttons);
+        checkAnswer(
+          optionText(option) || index,
+          item,
+          buttons
+        );
       });
 
       buttons.push(button);
