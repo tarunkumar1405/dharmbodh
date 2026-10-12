@@ -190,48 +190,42 @@ function optionText(option) {
   return getValue(option, ["text", "label", "option", "answer"]);
 }
 
-function checkAnswer(selected, item, buttons) {
+function checkAnswer(selectedIndex, item, buttons) {
   const answer = getValue(item, [
     "answer",
     "correctAnswer",
     "correct",
     "correct_option"
   ]);
-
-  const normalizedAnswer = String(answer).trim().toLowerCase();
-  const normalizedSelected = String(selected).trim().toLowerCase();
-
-  let correct = normalizedSelected === normalizedAnswer;
-
   const options = getOptions(item);
+  const answerText = String(answer ?? "").trim();
+  let correctIndex = -1;
 
-  if (!correct && answer !== "" && options.length) {
-    const answerIndex = Number(answer);
-
-    if (!Number.isNaN(answerIndex)) {
-      const index = options.findIndex(function (option) {
-        return option === answerIndex || String(option) === String(answer);
-      });
-
-      if (index >= 0) {
-        correct = String(index) === String(selected);
-      } else {
-        correct = String(answerIndex) === String(selected);
-      }
-    }
+  // Most quiz.json entries store the correct option as a zero-based index.
+  if (answerText !== "" && /^\d+$/.test(answerText)) {
+    const candidate = Number(answerText);
+    if (candidate >= 0 && candidate < options.length) correctIndex = candidate;
+  } else {
+    // Also support data that stores the correct option as its visible text.
+    correctIndex = options.findIndex(function (option) {
+      return String(optionText(option) ?? "").trim().toLowerCase() === answerText.toLowerCase();
+    });
   }
 
+  const correct = Number(selectedIndex) === correctIndex;
   buttons.forEach(function (button) {
     button.disabled = true;
   });
 
   const result = document.getElementById("quizResult");
-
   if (result) {
+    const correctLabel = correctIndex >= 0
+      ? (optionText(options[correctIndex]) || String(options[correctIndex]))
+      : "";
     result.textContent = correct
       ? "सही उत्तर!"
-      : answer
-        ? "सही उत्तर: " + answer
+      : correctLabel
+        ? "सही उत्तर: " + correctLabel
         : "उत्तर दर्ज किया गया।";
   }
 }
@@ -272,11 +266,7 @@ async function loadDailyQuiz() {
       button.textContent = optionText(option) || ("विकल्प " + (index + 1));
 
       button.addEventListener("click", function () {
-        checkAnswer(
-          optionText(option) || index,
-          item,
-          buttons
-        );
+        checkAnswer(index, item, buttons);
       });
 
       buttons.push(button);
