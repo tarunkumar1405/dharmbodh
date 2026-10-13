@@ -59,6 +59,20 @@
 @media(max-width:500px){.daily-panchang-card,.daily-bhakti-card{padding:15px}.daily-date-pill{display:none}.daily-spiritual-heading h3{font-size:1.18rem}.panchang-detail{padding:10px}.panchang-detail strong{font-size:.87rem}.bhakti-main{font-size:1.1rem}}
 </style>
 
+
+<style>
+/* Hanuman Chalisa home card — based on user's visual reference */
+.hanuman-chalisa-home-card{overflow:hidden;padding:0 0 16px}
+.hanuman-chalisa-image-link{display:block;margin:0 0 12px;overflow:hidden;border-radius:14px 14px 0 0;background:#fff0d8}
+.hanuman-chalisa-image-link img{display:block;width:100%;height:auto;max-height:340px;aspect-ratio:16/7;object-fit:cover;object-position:center}
+.hanuman-chalisa-home-card h3,.hanuman-chalisa-home-card>p{margin-left:16px;margin-right:16px}
+.hanuman-chalisa-home-card h3{margin-top:0;margin-bottom:8px}
+.hanuman-chalisa-home-card>p{line-height:1.8}
+.hanuman-chalisa-cta{display:block;text-align:center;text-decoration:none!important;background:#7b3e20;color:#fff!important;font-weight:800;border-radius:8px;padding:12px 14px;margin:12px 12px 0}
+.hanuman-chalisa-cta:hover{background:#5c2d19}
+@media(max-width:500px){.hanuman-chalisa-image-link img{aspect-ratio:16/9;max-height:none}.hanuman-chalisa-home-card{padding-bottom:13px}}
+</style>
+
 </head>
 <body>
 
@@ -289,9 +303,13 @@
         <h3>🙏 सेवा और सदाचार</h3>
         <p>दया, सत्य, संयम और सेवा को दैनिक जीवन का हिस्सा बनाने का प्रयास करें।</p>
       </article>
-      <article class="card latest-article-card">
+      <article class="card latest-article-card hanuman-chalisa-home-card">
+        <a class="hanuman-chalisa-image-link" href="hanuman-chalisa.html" aria-label="श्री हनुमान चालीसा पढ़ें">
+          <img src="hanuman-chalisa-banner.png" alt="श्री हनुमान जी का भक्तिमय चित्र" loading="lazy">
+        </a>
         <h3><a href="hanuman-chalisa.html">🚩 श्री हनुमान चालीसा</a></h3>
-        <p>पूरा पाठ पढ़ें, हर चौपाई का सरल हिंदी अर्थ समझें और ब्राउज़र में पाठ सुनें।</p>
+        <p>श्री हनुमान चालीसा का पूरा पाठ पढ़ें, प्रत्येक चौपाई का सरल हिंदी अर्थ समझें और सुनें।</p>
+        <a class="hanuman-chalisa-cta" href="hanuman-chalisa.html">चालीसा पढ़ें →</a>
       </article>
     </div>
   </section>
