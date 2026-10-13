@@ -26,8 +26,8 @@ h2{color:var(--brown);font-size:1.35rem;margin:0 0 12px;border-bottom:1px solid 
 <style>
 /* Devotional image on the full Hanuman Chalisa page */
 .hanuman-page-hero{max-width:1000px;margin:20px auto 8px;padding:0 16px}
-.hanuman-page-hero img{display:block;width:124px;height:124px;object-fit:contain;margin:0 auto;border-radius:14px}
-@media(max-width:600px){.hanuman-page-hero{margin:12px auto 6px;padding:0 12px}.hanuman-page-hero img{width:104px;height:104px}}
+.hanuman-page-hero img{display:block;width:100%;height:auto;max-height:390px;aspect-ratio:16/7;object-fit:cover;object-position:center;border-radius:14px;box-shadow:0 4px 18px rgba(74,38,20,.15)}
+@media(max-width:600px){.hanuman-page-hero{margin:12px auto 6px;padding:0 12px}.hanuman-page-hero img{aspect-ratio:16/9;max-height:none;border-radius:10px}}
 </style>
 
 </head>
@@ -39,7 +39,7 @@ h2{color:var(--brown);font-size:1.35rem;margin:0 0 12px;border-bottom:1px solid 
 </header>
 
 <section class="hanuman-page-hero" aria-label="श्री हनुमान जी का चित्र">
-  <img src="hanuman-icon.svg" alt="श्री हनुमान जी का SVG प्रतीक">
+  <img src="hanuman-chalisa-banner.png" alt="श्री हनुमान जी का भक्तिमय चित्र">
 </section>
 
 <main id="content">
