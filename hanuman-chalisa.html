@@ -22,6 +22,14 @@ h2{color:var(--brown);font-size:1.35rem;margin:0 0 12px;border-bottom:1px solid 
 @media(max-width:520px){.card{padding:15px}.toolbar button{flex:1 1 42%}body{line-height:1.8}}
 @media print{body{background:white;color:black}.toolbar,header nav,.note,footer{display:none!important}main{max-width:none;margin:0;padding:0}.card{break-inside:avoid;box-shadow:none;border:0;border-bottom:1px solid #ddd;padding:10px 0}.meaning{background:white;border:1px solid #ddd}header{background:white;color:black;padding:0}header p,header a{color:black}}
 </style>
+
+<style>
+/* Devotional image on the full Hanuman Chalisa page */
+.hanuman-page-hero{max-width:1000px;margin:20px auto 8px;padding:0 16px}
+.hanuman-page-hero img{display:block;width:124px;height:124px;object-fit:contain;margin:0 auto;border-radius:14px}
+@media(max-width:600px){.hanuman-page-hero{margin:12px auto 6px;padding:0 12px}.hanuman-page-hero img{width:104px;height:104px}}
+</style>
+
 </head>
 <body>
 <header>
@@ -29,6 +37,11 @@ h2{color:var(--brown);font-size:1.35rem;margin:0 0 12px;border-bottom:1px solid 
 <h1>॥ श्री हनुमान चालीसा ॥</h1>
 <p>भक्ति • पाठ • सरल हिंदी अर्थ</p>
 </header>
+
+<section class="hanuman-page-hero" aria-label="श्री हनुमान जी का चित्र">
+  <img src="hanuman-icon.svg" alt="श्री हनुमान जी का SVG प्रतीक">
+</section>
+
 <main id="content">
 <div class="toolbar" aria-label="पाठ के विकल्प">
 <button class="primary" id="listen">▶ पाठ सुनें</button>
