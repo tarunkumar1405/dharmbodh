@@ -1,0 +1,1 @@
+Review copy based on the user's uploaded index.html. Adds the Hanuman Bhakti cards before the existing footer and links to the five HTML pages. It references hanuman-chalisa-banner.png. No GitHub changes or deployment have been made.

@@ -73,6 +73,25 @@
 @media(max-width:500px){.hanuman-chalisa-image-link img{aspect-ratio:16/9;max-height:none}.hanuman-chalisa-home-card{padding-bottom:13px}}
 </style>
 
+<style>
+/* Hanuman Bhakti section: responsive cards above the footer */
+.hanuman-bhakti-section{margin-top:10px}
+.hanuman-bhakti-tag{font-size:.85rem;color:#9a511d;background:#fff0d9;border:1px solid #ead0ad;padding:6px 12px;border-radius:999px}
+.hanuman-bhakti-intro{color:#6b5746;margin:-6px 0 18px;line-height:1.8}
+.hanuman-bhakti-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.hanuman-bhakti-card{min-width:0;overflow:hidden;background:#fff;border:1px solid #ead4b8;border-radius:16px;box-shadow:0 6px 20px rgba(92,48,16,.07)}
+.hanuman-bhakti-image{display:block;background:#fff0d8;overflow:hidden}
+.hanuman-bhakti-image img{display:block;width:100%;height:auto;aspect-ratio:16/8;object-fit:cover}
+.hanuman-bhakti-card-content{padding:17px}
+.hanuman-bhakti-card h3{margin:0 0 8px;color:#633719;font-size:1.08rem;line-height:1.5}
+.hanuman-bhakti-card h3 a{color:inherit}
+.hanuman-bhakti-card p{margin:0 0 14px;color:#6b5746;line-height:1.75;font-size:.95rem}
+.hanuman-bhakti-icon{display:inline-grid;place-items:center;width:42px;height:42px;margin-bottom:10px;border-radius:12px;background:#fff0d8;font-size:1.4rem}
+.hanuman-bhakti-link{display:inline-block;font-weight:800;color:#8d4214;border:1px solid #ead1b2;background:#fff7eb;border-radius:999px;padding:7px 11px;font-size:.9rem}
+.hanuman-bhakti-link:hover{background:#8d4214;color:#fff;text-decoration:none}
+@media(max-width:850px){.hanuman-bhakti-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.hanuman-bhakti-grid{grid-template-columns:1fr;gap:14px}.hanuman-bhakti-tag{display:none}.hanuman-bhakti-card-content{padding:15px}}
+</style>
 </head>
 <body>
 
@@ -440,6 +459,27 @@
 
 </div>
 </main>
+
+
+  <!-- Hanuman Bhakti: featured links to the five prepared pages -->
+  <section class="section hanuman-bhakti-section" id="hanuman-bhakti">
+    <div class="section-title">
+      <h2>🚩 हनुमान भक्ति</h2>
+      <span class="hanuman-bhakti-tag">भक्ति • साहस • सेवा</span>
+    </div>
+    <p class="hanuman-bhakti-intro">श्री हनुमान जी की स्तुति, मंत्र और रामकथा के प्रमुख प्रसंग सरल हिंदी में पढ़ें।</p>
+    <div class="hanuman-bhakti-grid">
+      <article class="hanuman-bhakti-card">
+        <a class="hanuman-bhakti-image" href="hanuman-chalisa.html"><img src="hanuman-chalisa-banner.png" alt="श्री हनुमान जी का भक्तिमय चित्र" loading="lazy" width="900" height="500"></a>
+        <div class="hanuman-bhakti-card-content"><h3><a href="hanuman-chalisa.html">श्री हनुमान चालीसा</a></h3><p>चालीसा का पाठ और सरल अर्थ पढ़ें।</p><a class="hanuman-bhakti-link" href="hanuman-chalisa.html">चालीसा पढ़ें →</a></div>
+      </article>
+      <article class="hanuman-bhakti-card"><div class="hanuman-bhakti-card-content"><span class="hanuman-bhakti-icon" aria-hidden="true">🪔</span><h3><a href="hanuman-aarti.html">श्री हनुमान आरती</a></h3><p>प्रचलित आरती का पाठ और सामान्य पूजा-विधि।</p><a class="hanuman-bhakti-link" href="hanuman-aarti.html">आरती पढ़ें →</a></div></article>
+      <article class="hanuman-bhakti-card"><div class="hanuman-bhakti-card-content"><span class="hanuman-bhakti-icon" aria-hidden="true">📿</span><h3><a href="hanuman-mantra.html">हनुमान जी के मंत्र</a></h3><p>मंत्र, सरल भावार्थ और जप के सामान्य सुझाव।</p><a class="hanuman-bhakti-link" href="hanuman-mantra.html">मंत्र देखें →</a></div></article>
+      <article class="hanuman-bhakti-card"><div class="hanuman-bhakti-card-content"><span class="hanuman-bhakti-icon" aria-hidden="true">🙏</span><h3><a href="sankatmochan-hanuman-ashtak.html">संकटमोचन हनुमान अष्टक</a></h3><p>प्रचलित पाठ और संक्षिप्त भावार्थ पढ़ें।</p><a class="hanuman-bhakti-link" href="sankatmochan-hanuman-ashtak.html">अष्टक पढ़ें →</a></div></article>
+      <article class="hanuman-bhakti-card"><div class="hanuman-bhakti-card-content"><span class="hanuman-bhakti-icon" aria-hidden="true">📖</span><h3><a href="sundarkand.html">सुंदरकांड</a></h3><p>प्रमुख प्रसंग, जीवन-सीख और पाठ की सामान्य तैयारी।</p><a class="hanuman-bhakti-link" href="sundarkand.html">सुंदरकांड जानें →</a></div></article>
+    </div>
+  </section>
+  <!-- End Hanuman Bhakti -->
 
 <footer>
   <div class="container footer-grid">
