@@ -92,6 +92,22 @@
 @media(max-width:850px){.hanuman-bhakti-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.hanuman-bhakti-grid{grid-template-columns:1fr;gap:14px}.hanuman-bhakti-tag{display:none}.hanuman-bhakti-card-content{padding:15px}}
 </style>
+
+<style>
+/* Pitaji dedication section — responsive and self-contained */
+.pitaji-dedication{padding:30px 0 34px;background:linear-gradient(135deg,#fffaf0 0%,#f8edda 52%,#fffaf3 100%);border-bottom:1px solid #ead8bd}
+.pitaji-dedication-inner{width:min(1000px,calc(100% - 32px));margin:0 auto;display:grid;grid-template-columns:minmax(180px,270px) minmax(0,1fr);align-items:center;gap:30px;padding:22px;border:1px solid #d9b979;border-radius:20px;background:rgba(255,255,255,.78);box-shadow:0 8px 28px rgba(94,61,23,.09)}
+.pitaji-photo-wrap{width:100%;max-width:270px;margin:0 auto;padding:6px;background:#fff;border:1px solid #c9a45b;border-radius:14px;box-shadow:0 5px 16px rgba(70,45,20,.14)}
+.pitaji-photo-wrap img{display:block;width:100%;height:auto;max-height:330px;object-fit:contain;border-radius:8px}
+.pitaji-message{text-align:center;padding:8px 6px}
+.pitaji-eyebrow{margin:0 0 7px;color:#9a6b18;font-size:.9rem;font-weight:800;letter-spacing:.04em}
+.pitaji-message h2{margin:0 0 8px;color:#633719;font-size:clamp(1.25rem,2.5vw,1.8rem);line-height:1.5}
+.pitaji-message h3{margin:0 0 12px;color:#8b3f16;font-size:1.15rem}
+.pitaji-message>p:not(.pitaji-eyebrow){max-width:580px;margin:0 auto;color:#5d4a3a;line-height:1.95;font-size:1rem}
+.pitaji-om{display:inline-block;margin-top:12px;color:#b18432;font-size:1.8rem;line-height:1}
+@media(max-width:640px){.pitaji-dedication{padding:20px 0 24px}.pitaji-dedication-inner{grid-template-columns:1fr;gap:17px;padding:16px;border-radius:16px}.pitaji-photo-wrap{max-width:205px}.pitaji-photo-wrap img{max-height:270px}.pitaji-message{padding:0 2px}.pitaji-message h3{font-size:1.05rem}.pitaji-message>p:not(.pitaji-eyebrow){font-size:.96rem;line-height:1.85}}
+</style>
+
 </head>
 <body>
 
@@ -120,6 +136,23 @@
     </nav>
   </div>
 </header>
+
+<!-- Pitaji dedication section: review before publishing -->
+<section class="pitaji-dedication" aria-labelledby="pitaji-title">
+  <div class="pitaji-dedication-inner">
+    <div class="pitaji-photo-wrap">
+      <img src="pitaji-shailendra.jpg" alt="स्वर्गीय श्री शैलेन्द्र जी की स्मृति में" loading="eager">
+    </div>
+    <div class="pitaji-message">
+      <p class="pitaji-eyebrow">श्रद्धांजलि एवं समर्पण</p>
+      <h2 id="pitaji-title">पिताजी की पावन स्मृति को समर्पित</h2>
+      <h3>स्वर्गीय श्री शैलेन्द्र जी</h3>
+      <p>“आपके दिए संस्कार और आपके आदर्श सदैव हमारा मार्गदर्शन करते रहेंगे। DharmBodh का यह प्रयास आपकी पावन स्मृति को समर्पित है।”</p>
+      <span class="pitaji-om" aria-hidden="true">ॐ</span>
+    </div>
+  </div>
+</section>
+
 
 <main>
 
