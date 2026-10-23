@@ -305,11 +305,14 @@
         <p class="daily-panchang-date" id="panchangGregorianDate">तारीख लोड हो रही है…</p>
         <div class="panchang-detail-grid">
           <div class="panchang-detail"><span>स्थान</span><strong>नई दिल्ली</strong></div>
-          <div class="panchang-detail"><span>वार</span><strong id="panchangWeekday">—</strong></div>
-          <div class="panchang-detail"><span>तिथि</span><strong>सत्यापित पंचांग डेटा आवश्यक</strong></div>
-          <div class="panchang-detail"><span>नक्षत्र</span><strong>सत्यापित पंचांग डेटा आवश्यक</strong></div>
+          <div class="panchang-detail"><span>वार</span><strong id="panchangWeekday">लोड हो रहा है…</strong></div>
+          <div class="panchang-detail"><span>तिथि</span><strong id="panchangTithi">लोड हो रहा है…</strong></div>
+          <div class="panchang-detail"><span>पक्ष</span><strong id="panchangPaksha">लोड हो रहा है…</strong></div>
+          <div class="panchang-detail"><span>नक्षत्र</span><strong id="panchangNakshatra">लोड हो रहा है…</strong></div>
+          <div class="panchang-detail"><span>योग</span><strong id="panchangYoga">लोड हो रहा है…</strong></div>
+          <div class="panchang-detail"><span>करण</span><strong id="panchangKarana">लोड हो रहा है…</strong></div>
         </div>
-        <p class="panchang-honesty-note">तिथि, नक्षत्र, योग और सूर्योदय समय स्थान के अनुसार बदल सकते हैं। गलत जानकारी से बचने के लिए इन्हें विश्वसनीय दैनिक पंचांग स्रोत से जोड़ना बाकी है।</p>
+        <p class="panchang-honesty-note" id="panchangStatus" aria-live="polite">आज का पंचांग प्राप्त किया जा रहा है… समय और विवरण नई दिल्ली के अनुसार हैं।</p>
         <a class="daily-spiritual-link" href="vrat-tyohar.html">व्रत-त्योहार देखें →</a>
       </article>
       <article class="daily-bhakti-card">
@@ -546,6 +549,61 @@
   if (dateEl) dateEl.textContent = new Intl.DateTimeFormat('hi-IN', dateOptions).format(now);
   if (weekdayEl) weekdayEl.textContent = new Intl.DateTimeFormat('hi-IN', weekdayOptions).format(now);
   if (labelEl) labelEl.textContent = new Intl.DateTimeFormat('hi-IN', {timeZone:'Asia/Kolkata', day:'numeric', month:'short'}).format(now);
+
+  // Live Panchang from the Cloudflare Worker. The API key stays server-side.
+  const panchangStatus = document.getElementById('panchangStatus');
+  const panchangFields = {
+    weekday: document.getElementById('panchangWeekday'),
+    tithi: document.getElementById('panchangTithi'),
+    paksha: document.getElementById('panchangPaksha'),
+    nakshatra: document.getElementById('panchangNakshatra'),
+    yoga: document.getElementById('panchangYoga'),
+    karana: document.getElementById('panchangKarana')
+  };
+  const panchangHindi = {
+    weekday: {Sunday:'रविवार',Monday:'सोमवार',Tuesday:'मंगलवार',Wednesday:'बुधवार',Thursday:'गुरुवार',Friday:'शुक्रवार',Saturday:'शनिवार'},
+    paksha: {Shukla:'शुक्ल पक्ष',Krishna:'कृष्ण पक्ष'},
+    tithi: {Pratipada:'प्रतिपदा',Dvitiya:'द्वितीया',Tritiya:'तृतीया',Chaturthi:'चतुर्थी',Panchami:'पंचमी',Shashthi:'षष्ठी',Saptami:'सप्तमी',Ashtami:'अष्टमी',Navami:'नवमी',Dashami:'दशमी',Ekadashi:'एकादशी',Dwadashi:'द्वादशी',Trayodashi:'त्रयोदशी',Chaturdashi:'चतुर्दशी',Purnima:'पूर्णिमा',Amavasya:'अमावस्या'},
+    nakshatra: {'Ashwini':'अश्विनी','Bharani':'भरणी','Krittika':'कृत्तिका','Rohini':'रोहिणी','Mrigashira':'मृगशिरा','Ardra':'आर्द्रा','Punarvasu':'पुनर्वसु','Pushya':'पुष्य','Ashlesha':'आश्लेषा','Magha':'मघा','Purva Phalguni':'पूर्वा फाल्गुनी','Uttara Phalguni':'उत्तरा फाल्गुनी','Hasta':'हस्त','Chitra':'चित्रा','Swati':'स्वाति','Vishakha':'विशाखा','Anuradha':'अनुराधा','Jyeshtha':'ज्येष्ठा','Mula':'मूल','Purva Ashadha':'पूर्वाषाढ़ा','Uttara Ashadha':'उत्तराषाढ़ा','Shravana':'श्रवण','Dhanishta':'धनिष्ठा','Shatabhisha':'शतभिषा','Purva Bhadrapada':'पूर्वाभाद्रपद','Uttara Bhadrapada':'उत्तराभाद्रपद','Revati':'रेवती'},
+    yoga: {Vishkumbha:'विष्कुम्भ',Priti:'प्रीति',Ayushman:'आयुष्मान',Saubhagya:'सौभाग्य',Shobhana:'शोभन',Atiganda:'अतिगण्ड',Sukarma:'सुकर्मा',Dhriti:'धृति',Shula:'शूल',Ganda:'गण्ड',Vriddhi:'वृद्धि',Dhruva:'ध्रुव',Vyaghata:'व्याघात',Harshana:'हर्षण',Vajra:'वज्र',Siddhi:'सिद्धि',Vyatipata:'व्यतीपात',Variyan:'वरीयान',Parigha:'परिघ',Shiva:'शिव',Siddha:'सिद्ध',Sadhya:'साध्य',Shubha:'शुभ',Shukla:'शुक्ल',Brahma:'ब्रह्म',Indra:'इन्द्र',Vaidhriti:'वैधृति'},
+    karana: {Bava:'बव',Balava:'बालव',Kaulava:'कौलव',Taitila:'तैतिल',Garaja:'गरज',Vanija:'वणिज',Vishti:'विष्टि',Shakuni:'शकुनि',Chatushpada:'चतुष्पद',Naga:'नाग',Kimstughna:'किंस्तुघ्न'}
+  };
+  function panchangTranslate(kind, value) {
+    if (!value) return 'जानकारी उपलब्ध नहीं';
+    return (panchangHindi[kind] && panchangHindi[kind][value]) || value;
+  }
+  async function loadLivePanchang() {
+    if (!panchangStatus) return;
+    try {
+      const response = await fetch('https://dharmbodh-panchang.taruncool8647.workers.dev/', {
+        headers: {Accept:'application/json'},
+        cache: 'no-store'
+      });
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      if (data.error) throw new Error(data.error);
+      const values = {
+        weekday: panchangTranslate('weekday', data.weekday && data.weekday.name),
+        tithi: panchangTranslate('tithi', data.tithi && data.tithi.name),
+        paksha: panchangTranslate('paksha', data.tithi && data.tithi.paksha),
+        nakshatra: panchangTranslate('nakshatra', data.nakshatra && data.nakshatra.name),
+        yoga: panchangTranslate('yoga', data.yoga && data.yoga.name),
+        karana: panchangTranslate('karana', data.karana && data.karana.name)
+      };
+      Object.entries(panchangFields).forEach(([key, element]) => {
+        if (element) element.textContent = values[key];
+      });
+      panchangStatus.textContent = 'पंचांग डेटा प्राप्त हुआ। स्थान: नई दिल्ली। तिथि और अन्य विवरण API के समय-आधार के अनुसार हैं।';
+    } catch (error) {
+      Object.values(panchangFields).forEach(element => {
+        if (element) element.textContent = 'अभी उपलब्ध नहीं';
+      });
+      panchangStatus.textContent = 'अभी पंचांग डेटा प्राप्त नहीं हो सका। कृपया कुछ देर बाद पुनः प्रयास करें।';
+      console.error('DharmBodh Panchang error:', error);
+    }
+  }
+  loadLivePanchang();
+
 
   const bhaktiItems = [
     {type:'आज का सुविचार', main:'सत्य, करुणा और सेवा को अपने जीवन में स्थान दें।', desc:'छोटे अच्छे कर्म भी जीवन में सकारात्मक परिवर्तन ला सकते हैं।'},
