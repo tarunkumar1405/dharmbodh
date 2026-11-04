@@ -1,5 +1,5 @@
-DharmBodh Panchang Diya Icon Fix
+DharmBodh — सप्ताह के सात वार
 
-This package contains the supplied latest index.html with only the Panchang calendar emoji replaced by an inline SVG diya icon and the CSS required to style it. Other page content and links are unchanged.
-
-Review before uploading. No GitHub changes were made.
+इस पैकेज में saptahik-vrat.html और सातों वार के अलग HTML पेज हैं।
+इन फाइलों को वेबसाइट के उसी फ़ोल्डर में रखें जहाँ style.css, script.js और favicon.ico मौजूद हैं।
+मौजूदा वेबसाइट फाइलें बदली नहीं गई हैं। GitHub पर कोई बदलाव नहीं किया गया है।
