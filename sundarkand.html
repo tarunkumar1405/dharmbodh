@@ -3,34 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="धर्मबोध पर श्रीरामचरितमानस का सुंदरकाण्ड पाठ और सरल हिंदी भावार्थ।">
+<meta name="description" content="धर्मबोध पर श्रीरामचरितमानस सुंदरकाण्ड का पूरा पाठ और सरल हिंदी अर्थ पढ़ें।">
 <title>श्री सुंदरकाण्ड | धर्मबोध</title>
 <style>
 :root{--cream:#fffaf0;--paper:#fffdf8;--brown:#542d1d;--gold:#b77b22;--ink:#30251f;--muted:#6d5b50;--line:#ead9bd}
 *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Devanagari","Mangal",sans-serif;line-height:1.85}
 header{background:linear-gradient(135deg,#542d1d,#7b3e20);color:#fff8e9;padding:24px 16px;text-align:center}
 header a{color:#ffe2a3;text-decoration:none}header h1{margin:8px 0;font-size:clamp(1.7rem,5vw,2.5rem)}header p{margin:0;color:#f8e7cc}
-main{max-width:1050px;margin:22px auto;padding:0 14px 40px}
-.toolbar{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:16px 0}
-button,.btn{border:1px solid var(--gold);border-radius:999px;background:#fff7e5;color:var(--brown);padding:9px 15px;font:inherit;cursor:pointer;text-decoration:none}
-button.primary{background:var(--brown);color:white;border-color:var(--brown)}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 3px 12px #6b3b1710}
+main{max-width:900px;margin:22px auto;padding:0 14px 40px}
+.toolbar{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:16px 0 22px}
+.btn,button{display:inline-block;border:1px solid var(--gold);border-radius:999px;background:#fff7e5;color:var(--brown);padding:10px 17px;font:inherit;text-decoration:none;cursor:pointer}
+.primary{background:var(--brown);color:#fff;border-color:var(--brown)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0;box-shadow:0 3px 12px #6b3b1710}
+h2{color:var(--brown);font-size:1.3rem;margin:0 0 12px}
 .note{background:#fff2d5;border-left:4px solid var(--gold);padding:12px 15px;border-radius:8px;color:#60452e}
-h2{color:var(--brown);font-size:1.25rem;margin:0 0 10px}
-.reader{width:100%;height:78vh;min-height:700px;border:1px solid var(--line);border-radius:12px;background:white}
+.muted{color:var(--muted);font-size:.94rem}
+.list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.item{background:#fff8e9;border:1px solid var(--line);border-radius:10px;padding:12px}
 footer{text-align:center;color:var(--muted);padding:20px}
 .large{font-size:1.12rem}
-@media(max-width:600px){.card{padding:13px}.reader{height:78vh;min-height:620px}}
-@media print{
- @page{size:A4;margin:12mm}
- body{background:#fff;color:#111}
- header{background:#fff!important;color:#111;padding:0 0 8px;border-bottom:1px solid #aaa}
- header a,header p{color:#111}
- .toolbar,.note,footer,.no-print{display:none!important}
- main{max-width:none;margin:0;padding:0}
- .card{border:0;box-shadow:none;padding:0;margin:0}
- .reader{height:auto;min-height:0;border:0;overflow:visible}
-}
+@media(max-width:520px){.card{padding:15px}.toolbar .btn,.toolbar button{flex:1 1 42%;text-align:center}}
+@media print{@page{size:A4;margin:15mm}body{background:#fff;color:#111}header{background:#fff!important;color:#111;padding:0 0 10px;border-bottom:1px solid #aaa}header a,header p{color:#111}.toolbar,.no-print,footer{display:none!important}main{max-width:none;margin:0;padding:0}.card{box-shadow:none;border:0;border-bottom:1px solid #ddd;padding:12px 0}.item{break-inside:avoid;background:#fff}}
 </style>
 </head>
 <body>
@@ -41,30 +34,45 @@ footer{text-align:center;color:var(--muted);padding:20px}
 </header>
 <main id="content">
 <div class="toolbar no-print">
-<button class="primary" onclick="document.getElementById('reader').scrollIntoView({behavior:'smooth'})">पाठ पढ़ें</button>
+<a class="btn primary" href="https://jyotishjagat.com/hi/library/sundarkand" target="_blank" rel="noopener">पूरा पाठ एवं हिंदी अर्थ पढ़ें ↗</a>
+<a class="btn" href="https://ramayana.com/sunderkand" target="_blank" rel="noopener">वैकल्पिक पाठ स्रोत ↗</a>
 <button onclick="document.body.classList.toggle('large')">अक्षर बड़े / सामान्य</button>
-<button onclick="window.print()">प्रिंट / PDF</button>
-<button onclick="sharePage()">पेज शेयर करें</button>
+<button onclick="window.print()">इस पेज का प्रिंट / PDF</button>
 </div>
-<p class="note no-print"><strong>पाठक सुविधा:</strong> सुंदरकाण्ड का पूरा पाठ और प्रत्येक दोहे/चौपाई का सरल हिंदी भावार्थ नीचे इसी पेज के भीतर पढ़ें। पाठ अलग टैब में नहीं खुलेगा। प्रिंट के लिए ऊपर “प्रिंट / PDF” चुनें।</p>
+<p class="note"><strong>पाठ कैसे खोलें:</strong> ऊपर “पूरा पाठ एवं हिंदी अर्थ पढ़ें” पर क्लिक करें। वहाँ सुंदरकाण्ड का मूल पाठ, दोहे, चौपाइयाँ, छन्द और उनके संक्षिप्त हिंदी अर्थ क्रम से उपलब्ध हैं। पिछले संस्करण की तरह यहाँ कोई खाली धूसर बॉक्स नहीं है।</p>
 <section class="card">
-<h2>सम्पूर्ण सुंदरकाण्ड — मूल पाठ एवं हिंदी भावार्थ</h2>
-<iframe id="reader" class="reader" title="सम्पूर्ण सुंदरकाण्ड मूल पाठ और हिंदी भावार्थ" src="https://jyotishjagat.com/hi/library/sundarkand" loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+<h2>सुंदरकाण्ड में क्या-क्या है?</h2>
+<p>श्रीरामचरितमानस का सुंदरकाण्ड पाँचवाँ सोपान है। इसमें हनुमान जी की समुद्र-लंघन यात्रा, सुरसा और सिंहिका की परीक्षाएँ, लंका में प्रवेश, विभीषण से भेंट, अशोक वाटिका में माता सीता के दर्शन, लंका-दहन, श्रीराम के पास वापसी, विभीषण की शरणागति और समुद्र से मार्ग की विनती का वर्णन है।</p>
+<p>इस पाठ में मंगलाचरण के संस्कृत श्लोक, दोहा-चौपाइयाँ, छन्द और समापन दोहा सम्मिलित हैं।</p>
 </section>
-<section class="card no-print">
-<h2>सुंदरकाण्ड का महत्व</h2>
-<p>सुंदरकाण्ड श्रीरामचरितमानस का पाँचवाँ सोपान है। इसमें हनुमान जी की समुद्र-लंघन यात्रा, माता सीता से भेंट, लंका-दहन, श्रीराम के पास वापसी और विभीषण की शरणागति का वर्णन है। यह प्रसंग साहस, बुद्धि, विनम्रता, सेवा और भक्ति की प्रेरणा देता है।</p>
+<section class="card">
+<h2>सुंदरकाण्ड के प्रमुख प्रसंग</h2>
+<div class="list">
+<div class="item"><strong>१. समुद्र लाँघना</strong><br>हनुमान जी श्रीराम का स्मरण कर लंका की ओर प्रस्थान करते हैं।</div>
+<div class="item"><strong>२. लंका में प्रवेश</strong><br>वे लंकिनी को परास्त कर लंका में सीता जी की खोज करते हैं।</div>
+<div class="item"><strong>३. विभीषण से भेंट</strong><br>हनुमान जी विभीषण से मिलते हैं और अशोक वाटिका का पता पाते हैं।</div>
+<div class="item"><strong>४. सीता जी को संदेश</strong><br>वे श्रीराम की मुद्रिका देकर माता सीता को प्रभु का संदेश सुनाते हैं।</div>
+<div class="item"><strong>५. लंका-दहन</strong><br>हनुमान जी रावण की सभा में निर्भय होकर श्रीराम का संदेश देते हैं।</div>
+<div class="item"><strong>६. श्रीराम के पास वापसी</strong><br>वे माता सीता का समाचार लेकर लौटते हैं और प्रभु को सब बताते हैं।</div>
+<div class="item"><strong>७. विभीषण की शरणागति</strong><br>विभीषण श्रीराम की शरण में आते हैं और प्रभु उन्हें अपनाते हैं।</div>
+<div class="item"><strong>८. समुद्र से विनती</strong><br>लंका पहुँचने के उपाय पर श्रीराम समुद्र से मार्ग देने की प्रार्थना करते हैं।</div>
+</div>
+</section>
+<section class="card">
+<h2>प्रिंट / PDF कैसे निकालें?</h2>
+<ol>
+<li>ऊपर “पूरा पाठ एवं हिंदी अर्थ पढ़ें” पर क्लिक करें।</li>
+<li>खुले हुए पाठ वाले पेज पर ब्राउज़र का Print विकल्प चुनें या Ctrl + P दबाएँ।</li>
+<li>Printer की जगह “Save as PDF” चुनकर PDF सेव करें, या अपना प्रिंटर चुनें।</li>
+</ol>
+<p class="muted">ध्यान दें: इस पेज का प्रिंट बटन केवल इस परिचय पेज को प्रिंट करता है। पूरे सुंदरकाण्ड का प्रिंट पाठ-स्रोत वाले पेज से निकालें।</p>
+</section>
+<section class="card">
+<h2>स्रोत और पाठ-संबंधी जानकारी</h2>
+<p>पूरा पाठ एवं हिंदी अर्थ पढ़ने के लिए ज्योतिष जगत के सुंदरकाण्ड पाठ-संग्रह का लिंक दिया गया है। वैकल्पिक रूप से Ramayana.com पर भी सुंदरकाण्ड का पूरा पाठ उपलब्ध है।</p>
+<p class="muted">धर्मबोध पाठकों की सुविधा के लिए स्रोत लिंक दे रहा है; मूल पाठ-संग्रह बाहरी वेबसाइट पर ही होस्ट है।</p>
 </section>
 </main>
 <footer>॥ जय श्री राम • जय हनुमान ॥<br>धर्मबोध — श्रद्धा, ज्ञान और सद्भाव</footer>
-<script>
-async function sharePage(){
- try{
-  if(navigator.share) await navigator.share({title:document.title,url:location.href});
-  else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);alert('पेज का लिंक कॉपी हो गया।');}
-  else prompt('इस लिंक को कॉपी करें:',location.href);
- }catch(e){}
-}
-</script>
 </body>
 </html>
